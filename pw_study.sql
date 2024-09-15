@@ -32,3 +32,13 @@ CREATE TABLE TBL_REL_MONITOR_DISPONIBILIDADE(
 	FOREIGN KEY (ID_MONITOR) REFERENCES TBL_MONITOR (ID_MONITOR),
 	FOREIGN KEY (ID_DISPONIBILIDADE) REFERENCES TBL_DISPONIBILIDADE (ID_DISPONIBILIDADE)
 );
+
+INSERT INTO TBL_DISCIPLINA(TX_NOME) VALUES 
+('Língua Portuguesa'),
+('Matemática'),
+('Química');
+
+INSERT INTO TBL_MONITOR(TX_NOME, TX_FOTO, TX_WHATSAPP, TX_EMAIL, TX_CONTEUDO, ID_DISCIPLINA) VALUES 
+('João Carlos', 'https://example.com/joao_carlos.jpg', '11987654321', 'joao.carlos@gmail.com', 'Professor de química com foco em preparatório para vestibulares.', 3),
+('Maria Silvana', 'https://example.com/maria_silvana.jpg', '1193485967', 'maria.silvan@gmail.com', 'Especialista em literatura com enfoque em análise crítica e produção textual.', 1),
+('Felipe Costa', 'https://example.com/felipe_costa.jpg', '11909538895', 'felipe.costa@hotmail.com', 'Engenheiro com experiência em física aplicada e matemática avançada.', 2);
