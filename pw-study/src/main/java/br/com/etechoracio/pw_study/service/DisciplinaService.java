@@ -18,6 +18,10 @@ public class DisciplinaService {
     }
 
     public Disciplina cadastrar(Disciplina disciplina){
+        var existe = repository.findByNome(disciplina.getNome());
+        if(!existe.isEmpty()){
+            throw new RuntimeException("Disciplina já cadastrada.");
+        }
         return repository.save(disciplina); // Salvar os dados no banco. usar save em update tambem
     }
 }
