@@ -2,6 +2,7 @@ package br.com.etechoracio.pw_study.service;
 
 import br.com.etechoracio.pw_study.entity.Disciplina;
 import br.com.etechoracio.pw_study.repository.DisciplinaRepository;
+import br.com.etechoracio.pw_study.repository.MonitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import java.util.Optional;
 public class DisciplinaService {
     @Autowired
     private DisciplinaRepository repository;
+    @Autowired
+    private MonitorRepository monitorRepository;
 
     // Criar um metodo que vai pegar os resultados do BD.
     public List<Disciplina> listar(){
@@ -30,7 +33,11 @@ public class DisciplinaService {
         return repository.save(disciplina); // Salvar os dados no banco. usar save em update tambem
     }
 
-    public void deletarId(Long id){
-        repository.deleteById(id);
+    public void excluir(Disciplina disciplina){
+        if(monitorRepository.findByDisciplina(disciplina).isPresent()){
+            throw new RuntimeException("Não é possivel deletar o arquivo, pois a um monitor registrado.");
+        } else {
+            repository.deleteById(disciplina.getIdDisciplina());
+        }
     }
 }

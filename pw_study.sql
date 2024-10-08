@@ -33,12 +33,21 @@ CREATE TABLE TBL_REL_MONITOR_DISPONIBILIDADE(
 	FOREIGN KEY (ID_DISPONIBILIDADE) REFERENCES TBL_DISPONIBILIDADE (ID_DISPONIBILIDADE)
 );
 
-INSERT INTO TBL_DISCIPLINA(TX_NOME) VALUES 
-('Língua Portuguesa'),
-('Matemática'),
-('Química');
+CREATE TABLE TBL_CONEXAO(
+	ID_CONEXAO BIGINT NOT NULL PRIMARY KEY IDENTITY,
+	DT_CRIACAO DATETIME NOT NULL,
+	ID_MONITOR BIGINT NOT NULL,
+	FOREIGN KEY (ID_MONITOR) REFERENCES TBL_MONITOR (ID_MONITOR)
+);
 
-INSERT INTO TBL_MONITOR(TX_NOME, TX_FOTO, TX_WHATSAPP, TX_EMAIL, TX_CONTEUDO, ID_DISCIPLINA) VALUES 
-('João Carlos', 'https://example.com/joao_carlos.jpg', '11987654321', 'joao.carlos@gmail.com', 'Professor de química com foco em preparatório para vestibulares.', 3),
-('Maria Silvana', 'https://example.com/maria_silvana.jpg', '1193485967', 'maria.silvan@gmail.com', 'Especialista em literatura com enfoque em análise crítica e produção textual.', 1),
-('Felipe Costa', 'https://example.com/felipe_costa.jpg', '11909538895', 'felipe.costa@hotmail.com', 'Engenheiro com experiência em física aplicada e matemática avançada.', 2);
+INSERT INTO TBL_DISCIPLINA VALUES('Programação Web');
+INSERT INTO TBL_DISCIPLINA VALUES('Banco de dados');
+INSERT INTO TBL_DISCIPLINA VALUES('Design Digital');
+
+INSERT INTO TBL_MONITOR VALUES('Amanda Souza Gomes', 'https://images.generated.photos/-t6chrwY4d4Ro2AXJ8fY0jv6NsX7rbGyejtYzHRF704/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDM4Njk0LmpwZw.jpg', '11997894561', 'amanda-souza-gomes@armyspy.com', 'bla bla bla bla', 1);
+INSERT INTO TBL_MONITOR VALUES('Paulo Souza Gomes', 'https://images.generated.photos/i6niea3KzCXKtAe7I1HujD7aUMH_bn_8iE6t5Ovj5lM/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NjE0MzU0LmpwZw.jpg','11997894511', 'paulo-souza-gomes@armyspy.com', 'bla bla bla bla', 2);
+
+INSERT INTO TBL_CONEXAO VALUES('2024/09/10', 2);
+INSERT INTO TBL_CONEXAO VALUES('2024/09/12', 2);
+INSERT INTO TBL_CONEXAO VALUES('2024/09/14', 2);
+INSERT INTO TBL_CONEXAO VALUES('2024/09/16', 1);

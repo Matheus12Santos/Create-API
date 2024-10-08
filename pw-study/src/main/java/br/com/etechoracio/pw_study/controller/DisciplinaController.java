@@ -42,7 +42,7 @@ public class DisciplinaController {
     public ResponseEntity<Disciplina> deletarId(@PathVariable Long id){
         var existe = service.buscarPorId(id);
         if (existe.isPresent()) {
-            service.deletarId(id);
+            service.excluir(existe.get());
             return ResponseEntity.ok().build();
         }else{
             return ResponseEntity.notFound().build();
