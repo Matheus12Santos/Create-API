@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -17,9 +18,9 @@ public class Conexao {
     private Long idConexao;
 
     @Column(name = "DT_CRIACAO")
-    private LocalDate dtCriacao;
+    private Date dtCriacao;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "ID_MONITOR")
     private Monitor idMonitor;
 }

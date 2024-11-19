@@ -33,7 +33,7 @@ public class Monitor {
 
     @ManyToOne
     @JoinColumn(name = "ID_DISCIPLINA")
-    private Disciplina idDisciplina;
+    private Disciplina disciplina;
 
     // Correcao dessa parte
     @ManyToMany

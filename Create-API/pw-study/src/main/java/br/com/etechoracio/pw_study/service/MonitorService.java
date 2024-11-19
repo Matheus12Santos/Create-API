@@ -17,8 +17,8 @@ public class MonitorService {
     }
 
     public Monitor cadastrar(Monitor monitor){
-        var existe = repository.findByWhatsappAndEmail(monitor.getWhatsapp(), monitor.getEmail());
-        if(!existe.isEmpty()){
+        var existe = repository.findByWhatsappOrEmail(monitor.getWhatsapp(), monitor.getEmail());
+        if(!existe.isEmpty()){  //existe.isPresent()
             throw new RuntimeException("Telefone ou Email já cadastrados.");
         }
         return repository.save(monitor);
