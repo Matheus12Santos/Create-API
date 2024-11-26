@@ -2,6 +2,10 @@ package br.com.etechoracio.pw_study.controller;
 
 import br.com.etechoracio.pw_study.entity.Disciplina;
 import br.com.etechoracio.pw_study.service.DisciplinaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.hibernate.sql.results.graph.entity.internal.DiscriminatedEntityInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(description= "Endpoints para gerenciar as disciplinas", name = "Disciplina")
 @RestController
 @RequestMapping("/disciplinas")
 public class DisciplinaController {
@@ -17,6 +22,9 @@ public class DisciplinaController {
     private DisciplinaService service;
 
     // Criar um metodo que retornara uma lista de disciplina
+    @Operation(summary = "Lista todas as disciplinas")
+    @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
+                           @ApiResponse(responseCode = "400", description = "Não há disciplinas encontradas.")})
     @GetMapping
     public List<Disciplina> listar(){
         return service.listar();
@@ -38,6 +46,9 @@ public class DisciplinaController {
         return service.cadastrar(disciplina);
     }
 
+    @Operation(summary = "Exclui a disciplina pelo ID")
+    @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Não há disciplinas encontradas.")})
     @DeleteMapping("/{id}")
     public ResponseEntity<Disciplina> deletarId(@PathVariable Long id){
         var existe = service.buscarPorId(id);
